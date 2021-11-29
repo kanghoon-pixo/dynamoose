@@ -1,7 +1,8 @@
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 
-import * as dynamoose from "../../dist";
-import {Item} from "../../dist/Item";
+import * as dynamoose from "../../workspaces/dynamoose/dist";
+import {Item} from "../../workspaces/dynamoose/dist/Item";
+import { IndexType } from "../../workspaces/dynamoose/dist/Schema";
 
 // @ts-expect-error
 const shouldFailWithNumberAsName = dynamoose.model(1);
@@ -72,7 +73,7 @@ const userSchema = new dynamoose.Schema({
 	"name": {
 		"type": String,
 		"index": {
-			"global": true
+			"type": IndexType.global
 		}
 	},
 	"age": Number

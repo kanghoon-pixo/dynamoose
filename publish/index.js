@@ -14,7 +14,7 @@ const path = require("path");
 const ora = require("ora");
 const os = require("os");
 const npmFetch = require("npm-registry-fetch");
-let package = require("../package.json");
+let package;
 
 (async function main () {
 	console.log("Welcome to the Dynamoose Publisher!\n\n\n");
@@ -39,7 +39,7 @@ let package = require("../package.json");
 		}
 	]);
 	await git.checkout(results.branch);
-	package = require("../package.json");
+	package = require("../workspaces/dynamoose/package.json");
 	results = { // eslint-disable-line require-atomic-updates
 		...results,
 		...await inquirer.prompt([
@@ -84,23 +84,28 @@ let package = require("../package.json");
 	await git.checkoutBranch(branch, results.branch);
 	branchSpinner.succeed(`Created branch ${branch}`);
 	// Update version in package.json
-	const updateVersion = async (file) => {
-		const currentPath = path.join(__dirname, "..", file);
-		let fileContents = await fs.readFile(currentPath);
+	const updateVersion = async (filePath) => {
+		let fileContents = await fs.readFile(filePath);
 		const fileContentsJSON = JSON.parse(fileContents);
 		fileContentsJSON.version = results.version;
 		if (fileContentsJSON.packages && fileContentsJSON.packages[""]) {
 			fileContentsJSON.packages[""].version = results.version;
 		}
 		fileContents = JSON.stringify(fileContentsJSON, null, 2);
-		await fs.writeFile(currentPath, `${fileContents}\n`);
+		await fs.writeFile(filePath, `${fileContents}\n`);
 	};
 	const packageUpdateVersionsSpinner = ora("Updating versions in package.json & package-lock.json files").start();
-	await Promise.all(["package.json", "package-lock.json"].map(updateVersion));
+	const workspacesPath = path.resolve(__dirname, "../workspaces");
+	const packageFilePaths = (await Promise.all((await fs.readdir(workspacesPath)).map((file) => {
+		const filePath = path.join(workspacesPath, file);
+		const stats = await fs.stat(filePath);
+		return stats.isDirectory() ? filePath : null;
+	}))).filter(Boolean);
+	await Promise.all(packageFilePaths.map(updateVersion));
 	packageUpdateVersionsSpinner.succeed("Updated versions in package.json & package-lock.json files");
 	// Add & Commit files to Git
 	const gitCommitPackage = ora("Committing files to Git").start();
-	await git.commit(`Bumping version to ${results.version}`, ["package.json", "package-lock.json"].map((file) => path.join(__dirname, "..", file)));
+	await git.commit(`Bumping version to ${results.version}`, packageFilePaths);
 	gitCommitPackage.succeed("Committed files to Git");
 
 	const versionInfo = retrieveInformation(results.version);

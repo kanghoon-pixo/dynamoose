@@ -7,7 +7,7 @@ import utils = require("./utils");
 import {Item, AnyItem} from "./Item";
 import ModelStore = require("./ModelStore");
 import {ModelType} from "./General";
-import {CustomError} from "dynamoose-utils";
+import CustomError = require("./Error");
 import {Table} from "./Table";
 import type = require("./type");
 

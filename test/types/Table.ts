@@ -1,4 +1,4 @@
-import * as dynamoose from "../../dist";
+import * as dynamoose from "../../workspaces/dynamoose/dist";
 
 const shouldSucceedWithWaitForActiveAsObject = new dynamoose.Table("Table", [], {"waitForActive": {"enabled": true}});
 const shouldSucceedWithWaitForActiveSetToFalse = new dynamoose.Table("Table", [], {"waitForActive": false});

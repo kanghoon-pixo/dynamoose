@@ -4,10 +4,8 @@ const {internalProperties} = Internal.General;
 import DynamoDB = require("@aws-sdk/client-dynamodb");
 import ddb = require("../aws/ddb/internal");
 import utils = require("../utils");
-import {CustomError} from "dynamoose-utils";
+import CustomError = require("../Error");
 import {TableIndexChangeType} from "../utils/dynamoose/index_changes";
-import timeout = require("../utils/timeout");
-
 
 // Utility functions
 export async function getTableDetails (table: Table, settings: {allowError?: boolean; forceRefresh?: boolean} = {}): Promise<DynamoDB.DescribeTableOutput> {
@@ -40,7 +38,7 @@ function getExpectedTags (table: Table): DynamoDB.Tag[] | undefined {
 }
 export async function getTagDetails (table: Table): Promise<DynamoDB.ListTagsOfResourceOutput> {
 	const tableDetails = await getTableDetails(table);
-	let tags: DynamoDB.ListTagsOfResourceOutput = await ddb("listTagsOfResource", {
+	const tags: DynamoDB.ListTagsOfResourceOutput = await ddb("listTagsOfResource", {
 		"ResourceArn": tableDetails.Table.TableArn
 	});
 

@@ -1,4 +1,4 @@
-import {CustomError} from "dynamoose-utils";
+import CustomError = require("../Error");
 import {CallbackType, DeepPartial, ObjectType} from "../General";
 import Internal = require("../Internal");
 const {internalProperties} = Internal.General;

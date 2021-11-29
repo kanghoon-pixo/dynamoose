@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 
-import * as dynamoose from "../../dist";
-import {TransactionReturnOptions} from "../../dist/Transaction";
+import * as dynamoose from "../../workspaces/dynamoose/dist";
+import {TransactionReturnOptions} from "../../workspaces/dynamoose/dist/Transaction";
 
 const model = dynamoose.model("User");
 

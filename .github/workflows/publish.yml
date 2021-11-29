@@ -12,7 +12,7 @@ jobs:
       websites3bucket: ${{ steps.data.outputs.websites3bucket }}
     steps:
       - uses: actions/checkout@v2
-      - run: npm i
+      - run: npm install
         working-directory: ./publish
       - run: node publish/information/index.js
         id: data
@@ -27,7 +27,7 @@ jobs:
           node-version: lts/*
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: npm publish --tag $TAG
+      - run: npm publish --tag $TAG --workspaces
         env:
           TAG: ${{ needs.getinfo.outputs.npmtag }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -40,10 +40,10 @@ jobs:
   #     - uses: actions/checkout@v2
   #     - uses: actions/setup-node@v1
   #       with:
-  #         node-version: 12
+  #         node-version: lts/*
   #         registry-url: https://npm.pkg.github.com/
   #     - run: npm ci
-  #     - run: npm publish --tag $TAG
+  #     - run: npm publish --tag $TAG --workspaces
   #       env:
   #         TAG: ${{ needs.getinfo.outputs.npmtag }}
   #         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

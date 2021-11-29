@@ -1,10 +1,10 @@
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 
 import {UserTypedModel, UserModel, User} from "../Model";
-import {SortOrder} from "../../../dist/General";
-import {Condition} from "../../../dist";
-import {AnyItem} from "../../../dist/Item";
-import {QueryResponse} from "../../../dist/ItemRetriever";
+import {SortOrder} from "../../../workspaces/dynamoose/dist/General";
+import {Condition} from "../../../workspaces/dynamoose/dist";
+import {AnyItem} from "../../../workspaces/dynamoose/dist/Item";
+import {QueryResponse} from "../../../workspaces/dynamoose/dist/ItemRetriever";
 
 // query.exec([callback])
 async function queryExec (): Promise<User[]> {

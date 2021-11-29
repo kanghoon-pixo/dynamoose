@@ -1,9 +1,9 @@
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 
 import {UserTypedModel, User, UserModel} from "../Model";
-import {Condition} from "../../../dist";
-import {AnyItem} from "../../../dist/Item";
-import {ScanResponse} from "../../../dist/ItemRetriever";
+import {Condition} from "../../../workspaces/dynamoose/dist";
+import {AnyItem} from "../../../workspaces/dynamoose/dist/Item";
+import {ScanResponse} from "../../../workspaces/dynamoose/dist/ItemRetriever";
 
 // scan.exec([callback])
 async function scanExec (): Promise<User[]> {

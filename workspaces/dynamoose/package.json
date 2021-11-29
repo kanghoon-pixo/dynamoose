@@ -1,0 +1,106 @@
+{
+  "name": "dynamoose",
+  "version": "3.0.0-alpha.4",
+  "description": "Dynamoose is a modeling tool for Amazon's DynamoDB (inspired by Mongoose)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "homepage": "https://dynamoosejs.com",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "chai": "^4.3.4",
+    "dynamoose-logger": "3.0.0-alpha.1",
+    "eslint": "^8.2.0",
+    "jest": "^27.3.1",
+    "rimraf": "^3.0.2",
+    "source-map-support": "^0.5.21",
+    "typescript": "^4.5.2"
+  },
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc",
+    "build:sourcemap": "npm run build -- --sourceMap",
+    "build:clean": "rimraf dist",
+    "build:watch": "npm run build -- -w",
+    "build:sourcemap:watch": "npm run build:sourcemap -- -w",
+    "test:nocoverage": "jest",
+    "test": "npm run test:nocoverage -- --coverage",
+    "test:debug": "npm run test:nocoverage -- --no-timeout --inspect=9229",
+    "test:debug:breakpoint": "npm run test:nocoverage -- --no-timeout --inspect-brk=9229",
+    "test:types": "npm run build -- --project ../../test/types/tsconfig.json",
+    "lint": "eslint . --ext .ts,.js --max-warnings 0 --ignore-path ../../.eslintignore",
+    "lint:fix": "npm run lint -- --fix",
+    "site:install": "cd docs && npm install",
+    "site:start": "cd docs && npm start",
+    "site:build": "cd docs && npm run build",
+    "site:swizzle": "cd docs && npm run swizzle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dynamoose/dynamoose.git"
+  },
+  "author": {
+    "name": "Charlie Fish",
+    "email": "fishcharlie.code@gmail.com",
+    "url": "https://charlie.fish"
+  },
+  "contributors": [
+    {
+      "name": "Brandon Goode"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/dynamoose/dynamoose/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.42.0",
+    "@aws-sdk/util-dynamodb": "^3.42.0",
+    "dynamoose-utils": "^3.0.0-alpha.2",
+    "js-object-utilities": "^2.0.0"
+  },
+  "license": "Unlicense",
+  "keywords": [
+    "dynamodb",
+    "dynamo",
+    "mongoose",
+    "aws",
+    "amazon",
+    "document",
+    "model",
+    "schema",
+    "database",
+    "data",
+    "datastore",
+    "query",
+    "scan",
+    "nosql",
+    "db",
+    "nosql",
+    "store",
+    "document store",
+    "table",
+    "json",
+    "object",
+    "storage"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "funding": [
+    {
+      "type": "github-sponsors",
+      "url": "https://github.com/sponsors/fishcharlie"
+    },
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/dynamoose"
+    }
+  ]
+}
