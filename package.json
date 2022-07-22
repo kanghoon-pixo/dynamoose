@@ -63,6 +63,11 @@
   "peerDependencies": {
     "aws-sdk": "2.x"
   },
+  "peerDependenciesMeta": {
+    "aws-sdk": {
+      "optional": true
+    }
+  },
   "license": "Unlicense",
   "keywords": [
     "dynamodb",
