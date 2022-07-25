@@ -2,7 +2,7 @@ import {Document} from "./Document";
 import CustomError = require("./Error");
 import utils = require("./utils");
 const OR = Symbol("OR");
-import {DynamoDB} from "aws-sdk";
+import {AttributeValue} from "@aws-sdk/client-dynamodb";
 import {ObjectType} from "./General";
 
 const isRawConditionObject = (object): boolean => Object.keys(object).length === 3 && ["ExpressionAttributeValues", "ExpressionAttributeNames"].every((item) => Boolean(object[item]) && typeof object[item] === "object");
@@ -13,7 +13,7 @@ type ConditionStorageType = {[key: string]: ConditionsConditionStorageObject} | 
 export type ConditionStorageTypeNested = ConditionStorageType | Array<ConditionStorageTypeNested>;
 type ConditionStorageSettingsConditions = ConditionStorageTypeNested[];
 // TODO: the return value of the function below is incorrect. We need to add a property to the object that is a required string, where the property/key name is always equal to `settings.conditionString`
-type ConditionRequestObjectResult = {ExpressionAttributeNames?: DynamoDB.Types.ExpressionAttributeNameMap; ExpressionAttributeValues?: DynamoDB.Types.ExpressionAttributeValueMap};
+type ConditionRequestObjectResult = {ExpressionAttributeNames?: Record<string, string>; ExpressionAttributeValues?: Record<string, AttributeValue>};
 
 interface ConditionComparisonType {
 	name: ConditionComparisonComparatorName;
@@ -275,7 +275,7 @@ Condition.prototype.requestObject = function (this: Condition, settings: Conditi
 						return finalName;
 					}, []).join(".");
 				}
-				const toDynamo = (value: ObjectType): DynamoDB.AttributeValue => {
+				const toDynamo = (value: ObjectType): AttributeValue => {
 					return Document.objectToDynamo(value, {"type": "value"});
 				};
 				object.ExpressionAttributeValues[keys.value] = toDynamo(value);

@@ -1,3 +1,1 @@
-import * as AWS from "aws-sdk";
-
-export = AWS;
+export * from "@aws-sdk/client-dynamodb";

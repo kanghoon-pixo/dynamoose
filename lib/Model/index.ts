@@ -12,6 +12,7 @@ import {custom as customDefaults, original as originalDefaults} from "./defaults
 import {ModelIndexChangeType} from "../utils/dynamoose/index_changes";
 import {PopulateDocuments} from "../Populate";
 
+// import {DynamoDB, AWSError} from "@aws-sdk/client-dynamodb";
 import {DynamoDB, AWSError} from "aws-sdk";
 import {GetTransactionInput, CreateTransactionInput, DeleteTransactionInput, UpdateTransactionInput, ConditionTransactionInput} from "../Transaction";
 

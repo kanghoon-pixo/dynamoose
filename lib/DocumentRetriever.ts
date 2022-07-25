@@ -5,7 +5,7 @@ import {Condition, ConditionInitalizer, BasicOperators} from "./Condition";
 import {Model} from "./Model";
 import {Document} from "./Document";
 import {CallbackType, ObjectType, DocumentArray, SortOrder} from "./General";
-import {AWSError} from "aws-sdk";
+import {AWSError} from "@aws-sdk/client-dynamodb";
 import {PopulateDocuments} from "./Populate";
 
 enum DocumentRetrieverTypes {

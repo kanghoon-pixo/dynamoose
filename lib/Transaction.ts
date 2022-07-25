@@ -1,5 +1,5 @@
+import type * as DynamoDB from "@aws-sdk/client-dynamodb";
 import ddb = require("./aws/ddb/internal");
-import {DynamoDB} from "aws-sdk";
 import utils = require("./utils");
 import Error = require("./Error");
 import {Model} from "./Model";

@@ -1,7 +1,7 @@
 import {Document} from "./Document";
 import {DocumentArray, CallbackType} from "./General";
 import utils = require("./utils");
-import {AWSError} from "aws-sdk";
+import {AWSError} from "@aws-sdk/client-dynamodb";
 import {DynamoDBTypeResult, DynamoDBSetTypeResult, Schema} from "./Schema";
 
 export interface PopulateSettings {

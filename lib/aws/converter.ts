@@ -1,4 +1,5 @@
-import * as AWS from "./sdk";
+// import * as AWS from 'aws-sdk';
+import {  } from "./sdk";
 
 let customConverter: typeof AWS.DynamoDB.Converter | undefined;
 function main (): typeof AWS.DynamoDB.Converter {
