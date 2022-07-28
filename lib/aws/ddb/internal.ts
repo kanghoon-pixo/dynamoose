@@ -29,7 +29,7 @@ async function main (method: "transactWriteItems", params: DynamoDB.TransactWrit
 async function main (method: string, params: any): Promise<any> {
 	log({"level": "debug", "category": `aws:dynamodb:${method}:request`, "message": JSON.stringify(params, null, 4), "payload": {"request": params}});
 	const dynamodbClient = ddb();
-	
+
 	const result = await ddb()[method](params);
 	log({"level": "debug", "category": `aws:dynamodb:${method}:response`, "message": typeof result === "undefined" ? "undefined" : JSON.stringify(result, null, 4), "payload": {"response": result}});
 	return result;
