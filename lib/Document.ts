@@ -52,7 +52,7 @@ export class Document {
 	static objectToDynamo (object: any, settings: {type: "value"}): DynamoDB.AttributeValue;
 	static objectToDynamo (object: ObjectType, settings: {type: "object"}): DynamoDB.AttributeMap;
 	static objectToDynamo (object: any, settings: {type: "object" | "value"} = {"type": "object"}): DynamoDB.AttributeValue | DynamoDB.AttributeMap {
-		return (settings.type === "value" ? aws.converter().input : aws.converter().marshall)(object);
+		return (settings.type === "value" ? aws.converter().convertToAttr : aws.converter().marshall)(object);
 	}
 	static fromDynamo (object: DynamoDB.AttributeMap): ObjectType {
 		return aws.converter().unmarshall(object);

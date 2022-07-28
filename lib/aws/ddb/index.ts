@@ -3,8 +3,7 @@ import {DynamoDBClient} from "../sdk";
 let customDDB: DynamoDBClient | undefined;
 function main (): DynamoDBClient {
 	return customDDB || new DynamoDBClient({
-		// "region": process.env.AWS_REGION as string
-		c
+		"region": process.env.AWS_REGION as string
 	});
 }
 main.set = (ddb: DynamoDBClient): void => {

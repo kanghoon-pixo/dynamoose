@@ -1,11 +1,12 @@
 // import * as AWS from 'aws-sdk';
-import {  } from "./sdk";
 
-let customConverter: typeof AWS.DynamoDB.Converter | undefined;
-function main (): typeof AWS.DynamoDB.Converter {
-	return customConverter || AWS.DynamoDB.Converter;
+import * as Converter from "@aws-sdk/util-dynamodb";
+
+let customConverter: typeof Converter | undefined;
+function main (): typeof Converter {
+	return customConverter || Converter;
 }
-main.set = (converter: typeof AWS.DynamoDB.Converter): void => {
+main.set = (converter: typeof Converter): void => {
 	customConverter = converter;
 };
 main.revert = (): void => {
