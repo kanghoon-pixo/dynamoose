@@ -2,7 +2,7 @@ import {Document} from "./Document";
 import CustomError = require("./Error");
 import utils = require("./utils");
 const OR = Symbol("OR");
-import {DynamoDB} from "aws-sdk";
+import type {DynamoDB} from "aws-sdk";
 import {ObjectType} from "./General";
 
 const isRawConditionObject = (object): boolean => Object.keys(object).length === 3 && ["ExpressionAttributeValues", "ExpressionAttributeNames"].every((item) => Boolean(object[item]) && typeof object[item] === "object");

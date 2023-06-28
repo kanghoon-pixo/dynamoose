@@ -1,3 +1,4 @@
-import * as AWS from "aws-sdk";
+import DynamoDBClient = require("aws-sdk/clients/dynamodb");
 
-export = AWS;
+export declare type DynamoDB = DynamoDBClient;
+export const DynamoDB = DynamoDBClient;
